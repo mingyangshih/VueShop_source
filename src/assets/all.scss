@@ -1,0 +1,9 @@
+@import "~bootstrap/scss/functions";
+@import "./helpers/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "./helpers/admin";
+@import "./helpers/loadingOverlay";
+body {
+  background-color: theme-color("secondary");
+  font-family: "Roboto","Noto Sans TC", sans-serif;
+}
