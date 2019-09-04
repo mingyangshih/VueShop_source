@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <alert />
     <!-- nav bar -->
     <section class="container">
       <div class="row">
@@ -201,7 +202,11 @@ td {
 
 
 <script>
+import alert from "../AlertMessage";
 export default {
+  components: {
+    alert
+  },
   data() {
     return {
       cart: [],
@@ -218,7 +223,7 @@ export default {
       const vm = this;
       const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/cart`;
       this.$http.get(API).then(response => {
-        console.log(response);
+        // console.log(response);
         vm.cart = response.data.data.carts;
         vm.final_total = response.data.data.final_total;
         vm.total = response.data.data.total;
@@ -236,20 +241,20 @@ export default {
     createOrder() {
       const vm = this;
       const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/order`;
-      this.$validator.validate().then(valid => {
+      vm.$validator.validate().then(valid => {
         // valid傳入true or false
         if (valid) {
+          // vm.$bus.$emit("alert", "訂單新增成功", "success");
           const api = `${process.env.APIPATH}/api/${process.env.PATHNAME}/order`;
-          const vm = this;
           this.$http.post(API, { data: vm.form }).then(response => {
             if (response.data.success) {
-              this.getCart();
               vm.$bus.$emit("alert", "訂單新增成功", "success");
+              vm.form.user = {};
+              this.getCart();
             }
           });
         } else {
-          // console.log("hello");
-          vm.$bus.$emit("alert", "欄位不完整", "dnager");
+          vm.$bus.$emit("alert", "欄位不完整", "danger");
         }
       });
     }

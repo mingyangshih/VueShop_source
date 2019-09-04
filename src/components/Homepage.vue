@@ -1,88 +1,33 @@
 <template>
   <div>
-    <alert />
-    <!-- navbar -->
-    <section class="container">
-      <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100">
-          <h2 class="text-secondary font-weight-bold">
-            <i class="far fa-clock mr-3"></i>Watches
-          </h2>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarTogglerDemo01"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav mr-auto mt-0 mt-lg-0 w-100">
-              <li class="nav-item active ml-lg-auto">
-                <div>
-                  <router-link class="nav-link py-0 text-center" to="/">
-                    <i class="fas fa-home w-100"></i>
-                    Home
-                  </router-link>
-                </div>
-              </li>
-              <li class="nav-item">
-                <div>
-                  <router-link
-                    class="nav-link py-0 text-center"
-                    to="/admin/products"
-                    tabindex="-1"
-                    aria-disabled="true"
-                  >
-                    <i class="fas fa-clipboard-list w-100"></i>
-                    Admin
-                  </router-link>
-                </div>
-              </li>
-              <li class="nav-item">
-                <router-link to="/login" class="nav-link py-0 text-center">
-                  <i class="fas fa-user-alt w-100"></i>
-                  Login
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </section>
-    <router-view></router-view>
-    <!-- 下面可改成元件切換 -->
     <!-- Swiper component -->
-    <!-- <div class="container px-0 banner">
+    <div class="container px-0 banner">
       <swiper />
-    </div>-->
-    <!-- side bar -->
-    <!--div class="container px-0 mt-3">
+    </div>
+    <div class="container px-0 mt-3">
       <div class="row">
         <div class="col-md-2">
           <sidebar class="sticky-top" @watchType="changeWatchType" />
         </div>
-    <div class="col-md-10"-->
-    <!-- vue loading overlay 效果放在最頂部-->
-    <!--div class="vld-parent">
+        <div class="col-md-10">
+          <!-- vue loading overlay 效果放在最頂部-->
+          <div class="vld-parent">
             <loading :active.sync="status.isLoading" loader="dots"></loading>
           </div>
-    <!-- 產品列表(客戶端)-->
-    <!-- <guestproduct :productArray="productArray" @renewCart="renewCart" /> -->
-    <!-- 產品列表頁碼 -->
-    <!-- <pagination :pagination="pagination" @pageTrigger="getProducts" class="mt-3" /> -->
-    <!-- </div> -->
-    <!-- </div> -->
-    <!-- </div> -->
-    <!-- 購物車icon -->
-    <!-- <carticon
+          <!-- 產品列表(客戶端) -->
+          <guestproduct :productArray="productArray" @renewCart="renewCart" />
+          <!-- 產品列表頁碼 -->
+          <pagination :pagination="pagination" @pageTrigger="getProducts" class="mt-3" />
+        </div>
+      </div>
+    </div>
+    <carticon
       :cartNum="cartNum"
       :cartData="cartData"
       :finalTotal="finalTotal"
       @showCart="showCart"
       @removeCartItem="removeCartItem"
-    />-->
+    />
   </div>
 </template>
 
@@ -94,34 +39,23 @@
 .swiper {
   height: 500px;
 }
-h2 {
-  font-family: palatino;
-  font-style: italic;
-}
 </style>
 
 <script>
-import swiper from "../Swiper";
-import sidebar from "../Sidebar";
-import guestproduct from "../guestProduct";
-import pagination from "../Pagination";
-import alert from "../AlertMessage";
-import carticon from "../cartIcon";
+import swiper from "./Swiper";
+import sidebar from "./Sidebar";
+import guestproduct from "./guestProduct";
+import pagination from "./Pagination";
+import alert from "./AlertMessage";
+import carticon from "./cartIcon";
 export default {
-  components: {
-    swiper,
-    sidebar,
-    guestproduct,
-    pagination,
-    alert,
-    carticon
-  },
   data() {
     return {
       status: {
         // 載入畫面特效參數
         isLoading: false
       },
+      // watchType: "",
       // 存放取得的各份商品
       productArray: [],
       // 分頁物件參數
@@ -134,14 +68,21 @@ export default {
       finalTotal: 0
     };
   },
+  components: {
+    swiper,
+    sidebar,
+    guestproduct,
+    pagination,
+    alert,
+    carticon
+  },
   methods: {
-    // 取得個分頁商品(無分類)
     getProducts(page = 1) {
       const vm = this;
       const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/products?page=${page}`;
       this.status.isLoading = true;
       this.$http.get(API).then(response => {
-        // console.log(response);
+        console.log(response);
         if (response.data.success) {
           vm.status.isLoading = false;
           vm.productArray = response.data.products;
@@ -150,7 +91,6 @@ export default {
         }
       });
     },
-    // 左邊選單切換(by switch)
     changeWatchType(type) {
       const vm = this;
       vm.watchType = type;
@@ -200,7 +140,6 @@ export default {
         }
       });
     },
-    // 產品卡片按下add to cart後重新取得購物車資料
     renewCart() {
       this.getCart();
     },

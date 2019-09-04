@@ -7,6 +7,7 @@ import Admin from '@/components/pages/Admin'
 import ProductList from '@/components/ProductList'
 import SingleProduct from '@/components/pages/SingleProduct'
 import Checkout from '@/components/pages/Checkout'
+import HomePage from '@/components/Homepage'
 
 Vue.use(Router)
 
@@ -18,10 +19,16 @@ export default new Router({
       redirect: 'Home'
     },
     {
-      path: '/',
+      path: '/Home',
       name: 'Home',
       component: Home,
       children: [
+        {
+          path: '',
+          name: 'homepage',
+          component: HomePage,
+          // meta: { requiresAuth: true }
+        }
       ]
     },
     // 切換至單一商品畫面
