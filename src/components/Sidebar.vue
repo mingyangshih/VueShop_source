@@ -73,12 +73,12 @@
   &:hover {
     transform: scale(1.1, 1.1);
     background: rgb(122, 120, 120);
+    color: aliceblue;
   }
   background-color: rgba(189, 189, 148, 0.2);
   .btn-link {
     font-family: "Noto Sans TC", sans-serif;
     text-decoration: none;
-    color: rgba(37, 36, 36, 0.75);
     &:hover,
     &:focus {
       text-decoration: none;
@@ -98,10 +98,6 @@
     }
   }
 }
-
-.card-body.sideBar {
-  background-color: #fff;
-}
 </style>
 
 <script>
@@ -112,6 +108,7 @@ export default {
     };
   },
   methods: {
+    // 傳遞所選的sidebar到外層，以便動態新增class更改樣式
     watchTypeChange(type) {
       this.watchType = type;
       this.$emit("watchType", type);

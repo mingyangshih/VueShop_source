@@ -6,6 +6,7 @@ import Login from '@/components/pages/Login'
 import Admin from '@/components/pages/Admin'
 import ProductList from '@/components/ProductList'
 import SingleProduct from '@/components/pages/SingleProduct'
+import Checkout from '@/components/pages/Checkout'
 
 Vue.use(Router)
 
@@ -21,13 +22,19 @@ export default new Router({
       name: 'Home',
       component: Home,
       children: [
-
       ]
     },
+    // 切換至單一商品畫面
     {
       path: '/singleproduct/:productId',
       name: 'singleproduct',
       component: SingleProduct,
+    },
+    // 結帳畫面
+    {
+      path: '/checkout',
+      name: 'Checkout',
+      component: Checkout
     },
     {
       path: '/login',

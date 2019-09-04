@@ -5,10 +5,14 @@
       v-for="item in productArray"
       :key="item.id"
       v-masonry-tile
-      @click.prevent="toDetailPage(item.id)"
     >
       <div class="card" style="width: 100%;">
-        <img :src="item.imageUrl" class="card-img-top" :alt="item.id" />
+        <img
+          :src="item.imageUrl"
+          class="card-img-top"
+          :alt="item.id"
+          @click.prevent="toDetailPage(item.id)"
+        />
         <div class="card-body">
           <h6>
             <span class="badge badge-info">{{item.category}}</span>
@@ -70,7 +74,7 @@ export default {
       });
     },
     toDetailPage(id) {
-      console.log(id);
+      // console.log(id);
       this.$router.push(`/singleproduct/${id}`);
     }
   }

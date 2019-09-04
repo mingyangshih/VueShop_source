@@ -25,6 +25,13 @@ Vue.use(VueMasonryPlugin);
 // currency filter
 import filter from './filters/currency';
 Vue.filter('currency', filter);
+//vee validate
+import ZHTW from 'vee-validate/dist/locale/zh_TW';
+import VeeValidate, { Validator } from 'vee-validate';
+Vue.use(VeeValidate, {
+  events: 'input|blur',
+});
+Validator.localize('ZHTW', ZHTW);
 
 
 Vue.config.productionTip = false;

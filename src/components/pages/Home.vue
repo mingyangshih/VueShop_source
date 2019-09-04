@@ -1,6 +1,7 @@
 <template>
   <div>
     <alert />
+    <!-- navbar -->
     <section class="container">
       <div class="row">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100">
@@ -50,6 +51,7 @@
         </nav>
       </div>
     </section>
+    <!-- 下面可改成元件切換 -->
     <!-- Swiper component -->
     <div class="container px-0 banner">
       <swiper />
@@ -78,36 +80,12 @@
       :cartData="cartData"
       :finalTotal="finalTotal"
       @showCart="showCart"
+      @removeCartItem="removeCartItem"
     />
   </div>
 </template>
 
 <style lang="scss">
-// 點擊購物車特效
-body.show {
-  height: 100vh;
-  overflow: hidden;
-  width: 100%;
-  .grayOverlay {
-    display: block;
-  }
-}
-// 點擊購物車特效
-body {
-  .grayOverlay {
-    display: none;
-  }
-}
-.grayOverlay {
-  background: hsla(0, 0%, 100%, 0.65);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 10000;
-}
-
 .banner {
   position: relative;
   z-index: 1;
@@ -119,48 +97,71 @@ h2 {
   font-family: palatino;
   font-style: italic;
 }
-.cart-dropdown {
-  position: fixed;
-  bottom: 45px;
-  cursor: pointer;
-  right: 30px;
-  z-index: 10001;
-  .badge {
-    position: absolute;
-    right: 2px;
-    top: 2px;
-  }
-  &.show {
-    .cart-content {
-      display: block;
-    }
-  }
-  .cart-content {
-    min-width: 330px;
-    background: white;
-    position: absolute;
-    bottom: 75px;
-    right: 10px;
-    display: none;
-    z-index: 10001;
-    &:before {
-      content: "";
-      border-style: solid;
-      border-color: white transparent transparent;
-      border-width: 14px 13px 0;
-      bottom: -14px;
-      right: 23px;
-      z-index: 10001;
-      position: absolute;
-    }
-  }
-  .cart-menu-scroll {
-    border-bottom: 1px solid #dee2e6;
-    max-height: 30vh;
-    overflow-y: auto;
-    overflow-x: auto;
-  }
-}
+// // 點擊購物車特效
+// body.show {
+//   height: 100vh;
+//   overflow: hidden;
+//   width: 100%;
+//   .grayOverlay {
+//     display: block;
+//   }
+// }
+// body {
+//   .grayOverlay {
+//     display: none;
+//   }
+// }
+// .grayOverlay {
+//   background: hsla(0, 0%, 100%, 0.65);
+//   position: fixed;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   top: 0;
+//   z-index: 10000;
+// }
+// .cart-dropdown {
+//   position: fixed;
+//   bottom: 45px;
+//   cursor: pointer;
+//   right: 30px;
+//   z-index: 10001;
+//   .badge {
+//     position: absolute;
+//     right: 2px;
+//     top: 2px;
+//   }
+//   &.show {
+//     .cart-content {
+//       display: block;
+//     }
+//   }
+//   .cart-content {
+//     min-width: 330px;
+//     background: white;
+//     position: absolute;
+//     bottom: 75px;
+//     right: 10px;
+//     display: none;
+//     z-index: 10001;
+//     &:before {
+//       content: "";
+//       border-style: solid;
+//       border-color: white transparent transparent;
+//       border-width: 14px 13px 0;
+//       bottom: -14px;
+//       right: 23px;
+//       z-index: 10001;
+//       position: absolute;
+//     }
+//   }
+//   .cart-menu-scroll {
+//     border-bottom: 1px solid #dee2e6;
+//     max-height: 30vh;
+//     overflow-y: auto;
+//     overflow-x: auto;
+//   }
+// }
 </style>
 
 <script>
