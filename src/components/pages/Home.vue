@@ -52,6 +52,7 @@
       </div>
     </section>
     <router-view></router-view>
+    <!-- <bottom /> -->
     <!-- 下面可改成元件切換 -->
     <!-- Swiper component -->
     <!-- <div class="container px-0 banner">
@@ -107,6 +108,7 @@ import guestproduct from "../guestProduct";
 import pagination from "../Pagination";
 import alert from "../AlertMessage";
 import carticon from "../cartIcon";
+import bottom from "../Footer";
 export default {
   components: {
     swiper,
@@ -114,105 +116,106 @@ export default {
     guestproduct,
     pagination,
     alert,
-    carticon
-  },
-  data() {
-    return {
-      status: {
-        // 載入畫面特效參數
-        isLoading: false
-      },
-      // 存放取得的各份商品
-      productArray: [],
-      // 分頁物件參數
-      pagination: {},
-      // 存放取得的所有產品
-      tempProductArray: [],
-      // 購物車資訊
-      cartNum: 0,
-      cartData: [],
-      finalTotal: 0
-    };
-  },
-  methods: {
-    // 取得個分頁商品(無分類)
-    getProducts(page = 1) {
-      const vm = this;
-      const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/products?page=${page}`;
-      this.status.isLoading = true;
-      this.$http.get(API).then(response => {
-        // console.log(response);
-        if (response.data.success) {
-          vm.status.isLoading = false;
-          vm.productArray = response.data.products;
-          vm.pagination = response.data.pagination;
-        } else {
-        }
-      });
-    },
-    // 左邊選單切換(by switch)
-    changeWatchType(type) {
-      const vm = this;
-      vm.watchType = type;
-      const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/products/all`;
-      this.$http.get(API).then(response => {
-        // console.log(response);
-        if (response.data.success) {
-          vm.tempProductArray = response.data.products;
-          switch (type) {
-            case "all":
-              vm.getProducts();
-            case "mechanic":
-              vm.productArray = vm.tempProductArray.filter((item, index) => {
-                return item.category == "機械錶";
-              });
-              return;
-            case "smart":
-              vm.productArray = vm.tempProductArray.filter((item, index) => {
-                return item.category == "Smart Watch";
-              });
-              return;
-            case "digital":
-              vm.productArray = vm.tempProductArray.filter((item, index) => {
-                return item.category == "Digital Watch";
-              });
-              return;
-          }
-        }
-      });
-    },
-    // 取得購物車資料
-    getCart() {
-      const vm = this;
-      const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/cart`;
-      this.$http.get(API).then(response => {
-        vm.cartNum = response.data.data.carts.length;
-        vm.cartData = response.data.data.carts;
-        vm.finalTotal = response.data.data.final_total;
-      });
-    },
-    removeCartItem(id) {
-      const vm = this;
-      const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/cart/${id}`;
-      this.$http.delete(API).then(response => {
-        if (response.data.success) {
-          this.getCart();
-        }
-      });
-    },
-    // 產品卡片按下add to cart後重新取得購物車資料
-    renewCart() {
-      this.getCart();
-    },
-    // 購物車icon特效
-    showCart() {
-      $("body").toggleClass("show");
-      $("div.cart-dropdown").toggleClass("show");
-    }
-  },
-  created() {
-    this.getProducts();
-    this.getCart();
+    carticon,
+    bottom
   }
+  // data() {
+  //   return {
+  //     status: {
+  //       // 載入畫面特效參數
+  //       isLoading: false
+  //     },
+  //     // 存放取得的各份商品
+  //     productArray: [],
+  //     // 分頁物件參數
+  //     pagination: {},
+  //     // 存放取得的所有產品
+  //     tempProductArray: [],
+  //     // 購物車資訊
+  //     cartNum: 0,
+  //     cartData: [],
+  //     finalTotal: 0
+  //   };
+  // },
+  // methods: {
+  //   // 取得個分頁商品(無分類)
+  //   getProducts(page = 1) {
+  //     const vm = this;
+  //     const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/products?page=${page}`;
+  //     this.status.isLoading = true;
+  //     this.$http.get(API).then(response => {
+  //       // console.log(response);
+  //       if (response.data.success) {
+  //         vm.status.isLoading = false;
+  //         vm.productArray = response.data.products;
+  //         vm.pagination = response.data.pagination;
+  //       } else {
+  //       }
+  //     });
+  //   },
+  //   // 左邊選單切換(by switch)
+  //   changeWatchType(type) {
+  //     const vm = this;
+  //     vm.watchType = type;
+  //     const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/products/all`;
+  //     this.$http.get(API).then(response => {
+  //       // console.log(response);
+  //       if (response.data.success) {
+  //         vm.tempProductArray = response.data.products;
+  //         switch (type) {
+  //           case "all":
+  //             vm.getProducts();
+  //           case "mechanic":
+  //             vm.productArray = vm.tempProductArray.filter((item, index) => {
+  //               return item.category == "機械錶";
+  //             });
+  //             return;
+  //           case "smart":
+  //             vm.productArray = vm.tempProductArray.filter((item, index) => {
+  //               return item.category == "Smart Watch";
+  //             });
+  //             return;
+  //           case "digital":
+  //             vm.productArray = vm.tempProductArray.filter((item, index) => {
+  //               return item.category == "Digital Watch";
+  //             });
+  //             return;
+  //         }
+  //       }
+  //     });
+  //   },
+  //   // 取得購物車資料
+  //   getCart() {
+  //     const vm = this;
+  //     const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/cart`;
+  //     this.$http.get(API).then(response => {
+  //       vm.cartNum = response.data.data.carts.length;
+  //       vm.cartData = response.data.data.carts;
+  //       vm.finalTotal = response.data.data.final_total;
+  //     });
+  //   },
+  //   removeCartItem(id) {
+  //     const vm = this;
+  //     const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/cart/${id}`;
+  //     this.$http.delete(API).then(response => {
+  //       if (response.data.success) {
+  //         this.getCart();
+  //       }
+  //     });
+  //   },
+  //   // 產品卡片按下add to cart後重新取得購物車資料
+  //   renewCart() {
+  //     this.getCart();
+  //   },
+  //   // 購物車icon特效
+  //   showCart() {
+  //     $("body").toggleClass("show");
+  //     $("div.cart-dropdown").toggleClass("show");
+  //   }
+  // },
+  // created() {
+  //   this.getProducts();
+  //   this.getCart();
+  // }
 };
 </script>

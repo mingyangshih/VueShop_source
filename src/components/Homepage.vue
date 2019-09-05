@@ -4,7 +4,7 @@
     <div class="container px-0 banner">
       <swiper />
     </div>
-    <div class="container px-0 mt-3">
+    <div class="container px-0 mt-3 mb-3">
       <div class="row">
         <div class="col-md-2">
           <sidebar class="sticky-top" @watchType="changeWatchType" />
@@ -17,10 +17,16 @@
           <!-- 產品列表(客戶端) -->
           <guestproduct :productArray="productArray" @renewCart="renewCart" />
           <!-- 產品列表頁碼 -->
-          <pagination :pagination="pagination" @pageTrigger="getProducts" class="mt-3" />
+          <pagination
+            :pagination="pagination"
+            @pageTrigger="getProducts"
+            class="mt-3"
+            v-if="watchType == 'all'"
+          />
         </div>
       </div>
     </div>
+    <bottom />
     <carticon
       :cartNum="cartNum"
       :cartData="cartData"
@@ -48,6 +54,7 @@ import guestproduct from "./guestProduct";
 import pagination from "./Pagination";
 import alert from "./AlertMessage";
 import carticon from "./cartIcon";
+import bottom from "./Footer";
 export default {
   data() {
     return {
@@ -55,7 +62,7 @@ export default {
         // 載入畫面特效參數
         isLoading: false
       },
-      // watchType: "",
+      watchType: "all",
       // 存放取得的各份商品
       productArray: [],
       // 分頁物件參數
@@ -74,7 +81,8 @@ export default {
     guestproduct,
     pagination,
     alert,
-    carticon
+    carticon,
+    bottom
   },
   methods: {
     getProducts(page = 1) {
@@ -82,7 +90,7 @@ export default {
       const API = `${process.env.APIPATH}/api/${process.env.PATHNAME}/products?page=${page}`;
       this.status.isLoading = true;
       this.$http.get(API).then(response => {
-        console.log(response);
+        // console.log(response);
         if (response.data.success) {
           vm.status.isLoading = false;
           vm.productArray = response.data.products;

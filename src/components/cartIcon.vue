@@ -33,8 +33,8 @@
           <span class="text-pageHover font-weight-bold">小計</span>
           <span class="text-success font-weight-bold h5">{{finalTotal | currency}}</span>
         </div>
-        <router-link class="d-flex w-100" to="/checkout">
-          <button type="button" class="btn btn-primary btn-sm btn-block">結帳去</button>
+        <router-link class="d-flex w-100" to="/Home/checkout">
+          <button type="button" class="btn btn-primary btn-sm btn-block" @click="closeCart">結帳去</button>
         </router-link>
       </div>
     </div>

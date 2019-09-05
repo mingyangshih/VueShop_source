@@ -8,6 +8,7 @@ import ProductList from '@/components/ProductList'
 import SingleProduct from '@/components/pages/SingleProduct'
 import Checkout from '@/components/pages/Checkout'
 import HomePage from '@/components/Homepage'
+import Order from '@/components/Order'
 
 Vue.use(Router)
 
@@ -20,7 +21,7 @@ export default new Router({
     },
     {
       path: '/Home',
-      name: 'Home',
+      name: '',
       component: Home,
       children: [
         {
@@ -28,20 +29,18 @@ export default new Router({
           name: 'homepage',
           component: HomePage,
           // meta: { requiresAuth: true }
-        }
+        },
+        {// 結帳畫面
+          path: 'checkout',
+          name: 'Checkout',
+          component: Checkout
+        },
+        {// 切換至單一商品畫面
+          path: 'singleproduct/:productId',
+          name: 'singleproduct',
+          component: SingleProduct,
+        },
       ]
-    },
-    // 切換至單一商品畫面
-    {
-      path: '/singleproduct/:productId',
-      name: 'singleproduct',
-      component: SingleProduct,
-    },
-    // 結帳畫面
-    {
-      path: '/checkout',
-      name: 'Checkout',
-      component: Checkout
     },
     {
       path: '/login',
@@ -53,12 +52,20 @@ export default new Router({
       name: 'admin',
       component: Admin,
       meta: { requiresAuth: true },
-      children: [{
-        path: 'products',
-        name: 'products',
-        component: ProductList,
-        meta: { requiresAuth: true }
-      }]
+      children: [
+        {
+          path: 'products',
+          name: 'products',
+          component: ProductList,
+          meta: { requiresAuth: true }
+        },
+        {
+          path: 'order',
+          name: 'order',
+          component: Order,
+          meta: { requiresAuth: true }
+        },
+      ]
     }
   ]
 })

@@ -75,7 +75,7 @@ export default {
     },
     toDetailPage(id) {
       // console.log(id);
-      this.$router.push(`/singleproduct/${id}`);
+      this.$router.push(`/Home/singleproduct/${id}`);
     }
   }
 };

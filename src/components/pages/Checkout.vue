@@ -1,56 +1,6 @@
 <template>
   <div class="container">
     <alert />
-    <!-- nav bar -->
-    <section class="container">
-      <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100">
-          <h2 class="text-secondary font-weight-bold italic">
-            <i class="far fa-clock mr-3"></i>Watches
-          </h2>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarTogglerDemo01"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav mr-auto mt-0 mt-lg-0 w-100">
-              <li class="nav-item active ml-lg-auto">
-                <div>
-                  <router-link class="nav-link py-0 text-center" to="/">
-                    <i class="fas fa-home w-100"></i>
-                    Home
-                  </router-link>
-                </div>
-              </li>
-              <li class="nav-item">
-                <div>
-                  <router-link
-                    class="nav-link py-0 text-center"
-                    to="/admin/products"
-                    tabindex="-1"
-                    aria-disabled="true"
-                  >
-                    <i class="fas fa-clipboard-list w-100"></i>
-                    Admin
-                  </router-link>
-                </div>
-              </li>
-              <li class="nav-item">
-                <router-link to="/login" class="nav-link py-0 text-center">
-                  <i class="fas fa-user-alt w-100"></i>
-                  Login
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </section>
     <div class="row">
       <div class="col-md-5">
         <div class="my-5 justify-content-center">
@@ -81,7 +31,7 @@
                   </div>-->
                 </td>
                 <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
-                <td class="align-middle text-right">{{ item.final_total }}</td>
+                <td class="align-middle text-right">{{ item.final_total | currency}}</td>
               </tr>
             </tbody>
             <tfoot>
@@ -184,6 +134,7 @@
         </form>
       </div>
     </div>
+    <bottom class="fixed-bottom" />
   </div>
 </template>
 
@@ -203,9 +154,11 @@ td {
 
 <script>
 import alert from "../AlertMessage";
+import bottom from "../Footer";
 export default {
   components: {
-    alert
+    alert,
+    bottom
   },
   data() {
     return {

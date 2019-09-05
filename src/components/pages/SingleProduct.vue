@@ -4,56 +4,6 @@
     <div class="vld-parent">
       <loading :active.sync="status.isLoading" loader="dots"></loading>
     </div>
-    <!-- nav bar -->
-    <section class="container">
-      <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100">
-          <h2 class="text-secondary font-weight-bold italic">
-            <i class="far fa-clock mr-3"></i>Watches
-          </h2>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarTogglerDemo01"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav mr-auto mt-0 mt-lg-0 w-100">
-              <li class="nav-item active ml-lg-auto">
-                <div>
-                  <router-link class="nav-link py-0 text-center" to="/">
-                    <i class="fas fa-home w-100"></i>
-                    Home
-                  </router-link>
-                </div>
-              </li>
-              <li class="nav-item">
-                <div>
-                  <router-link
-                    class="nav-link py-0 text-center"
-                    to="/admin/products"
-                    tabindex="-1"
-                    aria-disabled="true"
-                  >
-                    <i class="fas fa-clipboard-list w-100"></i>
-                    Admin
-                  </router-link>
-                </div>
-              </li>
-              <li class="nav-item">
-                <router-link to="/login" class="nav-link py-0 text-center">
-                  <i class="fas fa-user-alt w-100"></i>
-                  Login
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </section>
     <!-- 產品內容 -->
     <div class="container mt-3 detail">
       <div class="row">
@@ -64,7 +14,7 @@
         </div>
         <div class="col-md-5">
           <span class="badge badge-info p-2 mt-2 mt-md-0">{{product.category}}</span>
-          <h2 class="mt-2 text-cardTitle">{{product.title}}</h2>
+          <h2 class="mt-2 text-cardTitle font-weight-bold">{{product.title}}</h2>
           <hr />
           <u class="h4 mt-3 d-block">Product Description</u>
           <p class>{{product.description}}</p>
@@ -92,6 +42,7 @@
         </div>
       </div>
     </div>
+    <bottom class="fixed-bottom" />
     <carticon
       :cartNum="cartNum"
       :cartData="cartData"
@@ -109,11 +60,11 @@
 }
 
 .h4 {
-  @extend %italicFont;
+  // @extend %italicFont;
   color: rgb(22, 34, 138);
 }
 p {
-  @extend %italicFont;
+  // @extend %italicFont;
   font-size: 1.2rem;
 }
 del {
@@ -127,9 +78,11 @@ del {
 
 <script>
 import carticon from "../cartIcon";
+import bottom from "../Footer";
 export default {
   components: {
-    carticon
+    carticon,
+    bottom
   },
   data() {
     return {
