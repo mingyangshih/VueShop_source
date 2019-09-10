@@ -273,6 +273,8 @@ export default {
           vm.pagination = response.data.pagination;
           //overlay loading關閉
           vm.status.isLoading = false;
+        } else {
+          this.$router.push("/login");
         }
       });
     },

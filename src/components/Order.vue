@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <table class="table table-responsive">
+  <div class="table-responsive mt-3">
+    <table class="table">
       <thead>
         <tr>
           <th>購買時間</th>
@@ -56,12 +56,13 @@ export default {
           this.orders.forEach(element => {
             this.products.push(element.products);
             this.id.push(element.id);
-            // 彌補當出新增訂單忘記打email問題
-            if (element.user) {
-              this.email.push(element.user.email);
-            } else {
-              this.email.push("jsps595214@gmail.com");
-            }
+            this.email.push(element.user.email);
+            // 彌補當初新增訂單忘記打email問題
+            // if (element.user) {
+            //   this.email.push(element.user.email);
+            // } else {
+            //   this.email.push("jsps595214@gmail.com");
+            // }
           });
           this.productDetail();
         }
@@ -74,12 +75,13 @@ export default {
         var tempTitleArray = [];
         var tempNumArray = [];
         var tempUnitArray = [];
-        //每個Order的物件長度
+        //products array內每個Order的物件長度
         var eachOrderLength = Object.keys(item).length;
         for (let i = 0; i < eachOrderLength; i++) {
+          // console.log(eachOrderLength);
           //取出products中的所有對應id(key)
           const id = Object.keys(vm.products[index])[i];
-          //取得key對應的title value
+          //取得key對應的title value,index是products array的index
           const titleValue = vm.products[index][id].product.title;
           const numValue = vm.products[index][id].product.num;
           const unitValue = vm.products[index][id].product.unit;
@@ -88,7 +90,7 @@ export default {
           tempUnitArray.push(unitValue);
           // console.log(tempArray);
           if (i === eachOrderLength - 1) {
-            console.log(i);
+            // console.log(i);
             vm.productsDetailTitle.push(tempTitleArray);
             vm.productsDetailNum.push(tempNumArray);
             vm.productsDetailUnit.push(tempUnitArray);

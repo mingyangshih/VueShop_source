@@ -112,7 +112,7 @@ export default {
       const vm = this;
       const API = `${process.env.APIPATH}/admin/signin`;
       this.$http.post(API, vm.user).then(response => {
-        vm.$router.push("/admin/products");
+        vm.$router.push("/admin");
       });
     }
   }

@@ -4,7 +4,7 @@
     <div class="container px-0 banner">
       <swiper />
     </div>
-    <div class="container px-0 mt-3 mb-3">
+    <div class="container px-md-0 mt-3 mb-3">
       <div class="row">
         <div class="col-md-2">
           <sidebar class="sticky-top" @watchType="changeWatchType" />

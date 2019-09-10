@@ -67,7 +67,7 @@
 <style lang="scss" scoped>
 @import "../assets/all.scss";
 .card {
-  transform: scale(1, 1);
+  // transform: scale(1, 1);
   transition: all 0.5s ease-out;
   cursor: pointer;
   &:hover {
@@ -95,6 +95,13 @@
     &:focus {
       text-decoration: none;
       color: rgba(255, 255, 255, 0.75);
+    }
+  }
+}
+@media (max-width: 540px) {
+  .card {
+    &:hover {
+      transform: scale(1, 1);
     }
   }
 }

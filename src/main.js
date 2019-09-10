@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import router from './router/index'
 // 自己載入的相關套件
 import 'bootstrap'
 import $ from 'jquery';
@@ -49,13 +49,17 @@ new Vue({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth) {
+  if (to.meta.requiresAuth === true) {
     const vm = this;
     const API = `${process.env.APIPATH}/api/user/check`;
     axios.post(API).then(response => {
-      if (response.data.success) {
+      // console.log(to.meta.requiresAuth + '1');
+      if (response.data.success === true) {
+        // console.log('true');
         next();
-      } else {
+      } else if (response.data.success === false) {
+        console.log(to.meta.requiresAuth);
+        console.log('fail');
         router.push('/login');
       }
     })

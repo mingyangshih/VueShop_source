@@ -20,13 +20,13 @@ export default new Router({
       redirect: 'Home'
     },
     {
-      path: '/Home',
       name: '',
+      path: '/Home',
       component: Home,
       children: [
         {
-          path: '',
           name: 'homepage',
+          path: '',
           component: HomePage,
           // meta: { requiresAuth: true }
         },
@@ -49,12 +49,12 @@ export default new Router({
     },
     {
       path: '/admin',
-      name: 'admin',
+      name: '',
       component: Admin,
-      meta: { requiresAuth: true },
+      // meta: { requiresAuth: true },
       children: [
         {
-          path: 'products',
+          path: '',
           name: 'products',
           component: ProductList,
           meta: { requiresAuth: true }

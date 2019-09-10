@@ -21,7 +21,7 @@
             <ul class="navbar-nav mr-auto mt-0 mt-lg-0 w-100">
               <li class="nav-item active ml-lg-auto">
                 <div>
-                  <router-link class="nav-link py-0 text-center" to="/">
+                  <router-link class="nav-link py-0 text-center" to="/Home">
                     <i class="fas fa-home w-100"></i>
                     Home
                   </router-link>
@@ -31,7 +31,7 @@
                 <div>
                   <router-link
                     class="nav-link py-0 text-center"
-                    to="/admin/products"
+                    to="/admin"
                     tabindex="-1"
                     aria-disabled="true"
                   >

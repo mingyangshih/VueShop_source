@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <bottom class="fixed-bottom" />
+    <bottom class="mt-5 footer" />
     <carticon
       :cartNum="cartNum"
       :cartData="cartData"
@@ -58,7 +58,6 @@
   font-family: "Roboto", "Noto Sans TC";
   font-style: italic;
 }
-
 .h4 {
   // @extend %italicFont;
   color: rgb(22, 34, 138);
@@ -74,6 +73,23 @@ del {
 .shadow-self {
   box-shadow: 0.5rem 0.5rem 1rem 1px rgba(0, 0, 0, 0.5);
 }
+
+// @media (min-width: 768px) and (max-width: 811px) {
+//   .footer {
+//     position: fixed;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//   }
+// }
+// @media (min-width: 813px) {
+//   .footer {
+//     position: fixed;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//   }
+// }
 </style>
 
 <script>
