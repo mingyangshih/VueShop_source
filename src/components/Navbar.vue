@@ -1,3 +1,4 @@
+<!--navbar template-->
 <template>
   <div>
     <section class="container">
