@@ -1,3 +1,4 @@
+<!--login component-->
 <template>
   <div>
     <form class="form-signin" @submit.prevent="login">
