@@ -1,3 +1,4 @@
+<!--AdminSide-->
 <template>
   <nav class="col-md-3 col-lg-2 bg-light sidebar pt-md-4">
     <div class="sticky-sidebar">
