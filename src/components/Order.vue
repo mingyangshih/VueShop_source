@@ -13,7 +13,8 @@
       </thead>
       <tbody>
         <tr v-for="(item,index) in orders" :key="item.id">
-          <td>{{`${new Date(item.create_at*1000).getFullYear()}/${new Date(item.create_at*1000).getMonth()+1}/${new Date(item.create_at*1000).getDate()}`}}</td>
+          <td>{{`${new Date(item.create_at*1000).getFullYear()}/${new Date(item.create_at*1000).getMonth()+1}/
+          ${new Date(item.create_at*1000).getDate()}`}}</td>
           <td>{{email[index]}}</td>
           <td>
             <div v-for="(item1,index1) in productsDetailTitle[index]" :key="index1">
