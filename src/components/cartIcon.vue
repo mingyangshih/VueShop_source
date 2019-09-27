@@ -1,3 +1,4 @@
+<!--cartIcon template-->
 <template>
   <div>
     <!-- 購物車icon -->
