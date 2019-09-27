@@ -1,3 +1,4 @@
+<!--swiper template-->
 <template>
   <swiper :options="swiperOption" ref="mySwiper">
     <!-- slides -->
