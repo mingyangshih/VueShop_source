@@ -1,3 +1,4 @@
+<!--pagination template-->
 <template>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">
