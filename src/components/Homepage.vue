@@ -1,3 +1,4 @@
+<!--Homepage template-->
 <template>
   <div>
     <!-- Swiper component -->
