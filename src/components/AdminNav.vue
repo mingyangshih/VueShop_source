@@ -1,3 +1,5 @@
+
+<!--AdminNav-->
 <template>
   <div>
     <nav class="navbar navbar-dark flex-md-nowrap p-0 shadow">
