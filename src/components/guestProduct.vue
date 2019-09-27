@@ -1,3 +1,4 @@
+<!--guestProduct template-->
 <template>
   <div class="row" v-masonry transition-duration="1s" item-selector=".item" origin-left="true">
     <div
