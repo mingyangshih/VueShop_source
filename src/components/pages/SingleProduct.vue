@@ -1,3 +1,4 @@
+<!--SingleProduct component-->
 <template>
   <div>
     <!-- vue loading overlay 效果放在最頂部-->
