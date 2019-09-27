@@ -1,3 +1,4 @@
+<!--Checkout component-->
 <template>
   <div>
     <div class="container">
