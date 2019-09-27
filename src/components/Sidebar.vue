@@ -1,3 +1,4 @@
+<!--sidebar template-->
 <template>
   <div>
     <div class="accordion" id="accordionExample">
