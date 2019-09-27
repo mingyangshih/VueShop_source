@@ -1,4 +1,4 @@
-
+//Home component
 <template>
   <div>
     <alert />
